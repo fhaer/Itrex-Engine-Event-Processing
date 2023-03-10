@@ -1,0 +1,1 @@
+{"executionArn": "arn:aws:states:us-east-1:726210406721:execution:db-dataset-ml:cb353c18-c697-4bf4-9d57-2c83d710e08b", "stateMachineArn": "arn:aws:states:us-east-1:726210406721:stateMachine:db-dataset-ml", "name": "cb353c18-c697-4bf4-9d57-2c83d710e08b", "status": "SUCCEEDED", "startDate": "2023-03-10T11:21:38.322000+01:00", "stopDate": "2023-03-10T11:24:16.099000+01:00"}

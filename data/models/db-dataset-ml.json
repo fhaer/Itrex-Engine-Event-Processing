@@ -1,0 +1,171 @@
+{
+  "StartAt": "Get Record Keys",
+  "TimeoutSeconds": 3600,
+  "States": {
+    "Get Record Keys": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:726210406721:function:StepFunction-GenerateDynamoDBData:$LATEST",
+      "ResultPath": "$.List",
+      "Next": "Check For Warehouse Records"
+    },
+    "Check For Warehouse Records": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.List[0]",
+          "IsPresent": true,
+          "Next": "Read Warehouse Records"
+        }
+      ],
+      "Default": "No Records"
+    },
+    "No Records": {
+      "Type": "Succeed"
+    },
+    "Read Warehouse Records": {
+      "Type": "Task",
+      "Next": "Extract Feature Data",
+      "Parameters": {
+        "TableName": "StepFunction-Warehouse",
+        "KeyConditions": {
+          "MessageId": {
+            "ComparisonOperator": "EQ",
+            "AttributeValueList": [
+              {
+                "S.$": "$.List[0]"
+              }
+            ]
+          }
+        }
+      },
+      "Resource": "arn:aws:states:::aws-sdk:dynamodb:query"
+    },
+    "Extract Feature Data": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "Payload.$": "$",
+        "FunctionName": "arn:aws:lambda:us-east-1:726210406721:function:StepFunction-GenerateAndWriteFeatureData:$LATEST"
+      },
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 6,
+          "BackoffRate": 2
+        }
+      ],
+      "Next": "Train ML Model XGBoost",
+      "ResultPath": null
+    },
+    "Train ML Model XGBoost": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sagemaker:createTrainingJob",
+      "Parameters": {
+        "AlgorithmSpecification": {
+          "TrainingImage": "811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest",
+          "TrainingInputMode": "File"
+        },
+        "OutputDataConfig": {
+          "S3OutputPath": "s3://step-function-ml/models"
+        },
+        "StoppingCondition": {
+          "MaxRuntimeInSeconds": 86400
+        },
+        "ResourceConfig": {
+          "InstanceCount": 1,
+          "InstanceType": "ml.m5.xlarge",
+          "VolumeSizeInGB": 30
+        },
+        "RoleArn": "arn:aws:iam::726210406721:role/step-functions-role-1",
+        "InputDataConfig": [
+          {
+            "DataSource": {
+              "S3DataSource": {
+                "S3DataDistributionType": "ShardedByS3Key",
+                "S3DataType": "S3Prefix",
+                "S3Uri": "s3://step-function-ml/csv/train.csv"
+              }
+            },
+            "ChannelName": "train",
+            "ContentType": "text/csv"
+          }
+        ],
+        "HyperParameters": {
+          "objective": "reg:logistic",
+          "eval_metric": "rmse",
+          "num_round": "5"
+        },
+        "TrainingJobName.$": "$$.Execution.Name"
+      },
+      "Next": "Evaluate Training Status"
+    },
+    "Evaluate Training Status": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "And": [
+            {
+              "Variable": "$.TrainingJobStatus",
+              "IsPresent": true
+            },
+            {
+              "Not": {
+                "Variable": "$.TrainingJobStatus",
+                "StringMatches": "InProgress"
+              }
+            }
+          ],
+          "Next": "Describe ML Model"
+        }
+      ],
+      "Default": "Wait For Training"
+    },
+    "Describe ML Model": {
+      "Type": "Task",
+      "Next": "Save ML Model",
+      "Parameters": {
+        "TrainingJobName.$": "$.TrainingJobName"
+      },
+      "Resource": "arn:aws:states:::aws-sdk:sagemaker:describeTrainingJob"
+    },
+    "Save ML Model": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sagemaker:createModel",
+      "Parameters": {
+        "PrimaryContainer": {
+          "Image": "811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest",
+          "Environment": {},
+          "ModelDataUrl.$": "$.ModelArtifacts.S3ModelArtifacts"
+        },
+        "ExecutionRoleArn": "arn:aws:iam::726210406721:role/step-functions-role-1",
+        "ModelName.$": "$.TrainingJobName"
+      },
+      "End": true
+    },
+    "Wait For Training": {
+      "Type": "Wait",
+      "Seconds": 150,
+      "Next": "Get Training Parameters"
+    },
+    "Get Training Parameters": {
+      "Type": "Task",
+      "Next": "Evaluate Training Status",
+      "Parameters": {
+        "MaxResults": 1,
+        "SortBy": "CreationTime",
+        "SortOrder": "Descending"
+      },
+      "Resource": "arn:aws:states:::aws-sdk:sagemaker:listTrainingJobs",
+      "ResultSelector": {
+        "TrainingJobName.$": "$.TrainingJobSummaries[0].TrainingJobName",
+        "TrainingJobStatus.$": "$.TrainingJobSummaries[0].TrainingJobStatus"
+      }
+    }
+  }
+}
