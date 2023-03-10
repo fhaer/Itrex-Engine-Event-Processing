@@ -2,6 +2,9 @@
 
 Instance tracking allows distributed parties to monitor executable models, e.g., on AWS Step Functions. The client can operate in two ways. (1.) It observes AWS event logs and triggers smart contract function calls for events related to deploying models, starting instances, and reaching instance states. (2.) It observes the smart contract for events and appends an instance protocol stored in a database. The database allows for analysis of models, instances, and states with further dimensions according to the data model.
 
+## Prototype
+
+The prototype is implemented in Python 3.9, using the web3.py library for accessing blockchains. Additional node software running locally in a fully-validating configuration is required. The following Python 3 modules are required: Web3 requests base58 binascii hashlib.
 
 ```
 Usage: engine_event_processing.py <command>
