@@ -4,7 +4,7 @@ Instance tracking allows distributed parties to monitor executable models, e.g.,
 
 ## Prototype
 
-The prototype is implemented in Python 3.9, using the web3.py library for accessing blockchains. Additional node software running locally in a fully-validating configuration is required. The following Python 3 modules are required: Web3 requests base58 binascii hashlib.
+The prototype is implemented in Python 3.9, using the web3.py library for accessing blockchains. Additional node software running locally in a fully-validating configuration is required. The following Python 3 modules are required: web3 requests base58 binascii hashlib psycopg2.
 
 Note: The prototype is only intended to demonstrate the feasibility of implementation.
 
