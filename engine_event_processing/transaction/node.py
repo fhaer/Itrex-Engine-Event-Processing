@@ -29,7 +29,7 @@ class Web3Node(Node):
 	#WEB3_ADDRESS = "https://mainnet.infura.io/v3/5cc53e4f3f614825be68d6aae4897cf4"
 
 	def __init__(self, identity):
-		self.account_address = Web3.toChecksumAddress(identity.address)
+		self.account_address = Web3.to_checksum_address(identity.address)
 		self.account_privatekey = identity.privatekey
 
 		if self.WEB3_ADDRESS.startswith("ws"):
