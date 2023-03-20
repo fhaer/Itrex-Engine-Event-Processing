@@ -56,7 +56,7 @@ class Web3Client(IdentityClient):
         with open(keyfile) as f:
             keyfile_json = f.read()
             prvk = self.w3.eth.account.decrypt(keyfile_json, self.PUBLIC_ACCESS_KEY)
-            account = self.w3.eth.account.privateKeyToAccount(prvk)
+            account = self.w3.eth.account.from_key(prvk)
             id = Identity(account.address, bytes(prvk))
             return id
             #return (accounts[keyfiles], pk)
