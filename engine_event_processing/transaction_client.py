@@ -54,7 +54,7 @@ def connect_node(identity):
     
     node_web3 = node.Web3Node(identity)
 
-    if not node_web3.w3.isConnected():
+    if not node_web3.w3.is_connected():
         print("web3 not connected, exiting")
         sys.exit()
 
