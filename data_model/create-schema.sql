@@ -6,13 +6,33 @@ drop table if exists D_Block;
 drop table if exists D_Contract;
 drop table if exists D_Client;
 
-create table D_Model (model_hash char(64) primary key, model_metadata text);
-create table D_Instance (instance_hash char(64) primary key, model_hash char(64)references D_Model(model_hash), instance_metadata text);
-create table D_State (state_hash char(64) primary key, instance_hash char(64) references D_Instance(instance_hash));
+create table D_Model (
+	model_hash char(64) primary key, 
+	model_metadata text
+);
+create table D_Instance (
+	instance_hash char(64) primary key, 
+	model_hash char(64) references D_Model(model_hash), 
+	instance_metadata text
+);
+create table D_State (
+	state_hash char(64) primary key, 
+	instance_hash char(64) references D_Instance(instance_hash)
+);
 
-create table D_Client (client_address char(40) primary key, client_id text);
-create table D_Contract (ca_address char(40) primary key, deployment_address char(40) references D_Client(client_address));
-create table D_Block (block_hash char(64) primary key, block_nr int, block_timestamp text);
+create table D_Client (
+	client_address char(40) primary key, 
+	client_id text
+);
+create table D_Contract (
+	ca_address char(40) primary key, 
+	deployment_address char(40) references D_Client(client_address)
+);
+create table D_Block (
+	block_hash char(64) primary key,
+	block_nr int,
+	block_timestamp text
+);
 
 create table D_Transaction (
 	transaction_hash char(64) primary key, 
