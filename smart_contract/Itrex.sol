@@ -26,6 +26,12 @@ contract Itrex {
   // descriptors for storing metadata by hash value 
   mapping(bytes32 => ModelInstanceDescriptor) public descriptors;
 
+  // certificate fingerprints and signatures by client address
+  mapping(address => bytes32) public certificateFingerprints;
+  mapping(address => bytes16) public certificateSignaturesPrefix;
+  mapping(address => bytes32) public certificateSignaturesA;
+  mapping(address => bytes32) public certificateSignaturesB;
+
   // metadata for models and transitions
   struct ModelInstanceDescriptor {
       bytes32 metadata;
@@ -59,6 +65,11 @@ contract Itrex {
    */
   event TerminateInstance(bytes32 indexed instance);
   
+  /** 
+   * @dev notifies clients when a state was entered, where the state change was triggered by clientID
+   */
+  event ClientNotificationEvent(bytes32 indexed stateHash, address clientID);
+
   /** 
    * @dev registers an account with an ID chosen by the user
    */
@@ -96,7 +107,7 @@ contract Itrex {
   }
 
   /** 
-   * @dev registers for a given instance an instance state with a 256 bit content-based instance hash value
+   * @dev registers for a given instance a state with a 256 bit content-based instance hash value
    */
   function registerState(bytes32 instHash, bytes32 stateHash) public {
       require(instances[instHash] > 0, "instance unknown");
@@ -106,6 +117,24 @@ contract Itrex {
       states[stateHash] = instHash;
 
       emit RegisterState(stateHash, instHash);
+      emit ClientNotificationEvent(stateHash, msg.sender);
+  }
+
+  /** 
+   * @dev registers a state, instance, and model using 256 bit content-based hash values
+   */
+  function registerState(bytes32 modelHash, bytes32 instHash, bytes32 stateHash) public {
+      registerModel(modelHash, msg.sender, 0x0);
+      registerInstance(modelHash, instHash, msg.sender, 0x0);
+
+      require(instances[instHash] > 0, "instance unknown");
+      require(descriptors[instHash].ownerAccount == msg.sender, "state registration not permitted");
+      require(descriptors[instHash].isTerminated == false, "instance is terminated");
+      
+      states[stateHash] = instHash;
+
+      emit RegisterState(stateHash, instHash);
+      emit ClientNotificationEvent(stateHash, msg.sender);
   }
 
   /** 
@@ -120,6 +149,19 @@ contract Itrex {
       transitions[instHash] = transitionHash;
 
       emitTransitionEvent(instHash, preStateHash, postStateHash);
+      emit ClientNotificationEvent(postStateHash, msg.sender);
+  }
+  
+  /** 
+   * @dev registers certificates with fingerprint and signature with prefix, part A, and part B placed by clientAddress
+   */
+  function registerCertificate(address clientAddress, bytes32 fingerprint, bytes16 sigPrefix, bytes32 sigPartA, bytes32 sigPartB) public {
+      require(clientAddress == msg.sender, "certificates can only be registered by the transaction sender");
+
+      certificateFingerprints[clientAddress] = fingerprint;
+      certificateSignaturesPrefix[clientAddress] = sigPrefix;
+      certificateSignaturesA[clientAddress] = sigPartA;
+      certificateSignaturesB[clientAddress] = sigPartB;
   }
   
   /** 
@@ -146,6 +188,35 @@ contract Itrex {
       require(descriptors[instHash].isTerminated == false, "instance is terminated");
 
       emit RegisterTransition(instHash, preStateHash, postStateHash);
+  }
+
+  /** 
+   * @dev retrieves a client by state hash
+   */
+  function getClient(bytes32 stateHash) public view returns (address) {
+      bytes32 instanceId = states[stateHash];
+      return descriptors[instanceId].ownerAccount;
+  }
+
+  /** 
+   * @dev retrieves a certificate fingerprint and signature by client account address
+   */
+  function getCertificate(address client) public view returns (bytes32, bytes16, bytes32, bytes32) {
+      return (certificateFingerprints[client], certificateSignaturesPrefix[client], certificateSignaturesA[client], certificateSignaturesB[client]);
+  }
+
+  /** 
+   * @dev retrieves the instance of a state
+   */
+  function getInstance(bytes32 stateHash) public view returns (bytes32) {
+      return states[stateHash];
+  }
+
+  /** 
+   * @dev retrieves the model of an instance
+   */
+  function getModel(bytes32 instanceHash) public view returns (bytes32) {
+      return instances[instanceHash];
   }
 
   /** 
