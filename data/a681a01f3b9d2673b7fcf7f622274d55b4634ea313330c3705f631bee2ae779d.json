@@ -1,0 +1,125 @@
+{
+    "model_hash": "c632cb64251cfdb18cb6dcab680b9fc82952aea783538ed246a4cb84f65b81e1",
+    "instance_hash": "a681a01f3b9d2673b7fcf7f622274d55b4634ea313330c3705f631bee2ae779d",
+    "instance_data": "https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host/data-queue-warehouse-etl-d02ebfb0-4074-436c-9d3f-f9e4e48223fc.json",
+    "model_data": "https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host/data-queue-warehouse-etl.json",
+    "instance_protocol": [
+        {
+            "event_type": "Register State",
+            "state_hash": "2f5017eb565ae673b27f22e43ecd4fe8e71dce1b18f887fac725403205bc0e25",
+            "timestamp": 1678443257,
+            "block_nr": 3060324,
+            "client_address": "acd398d9f25c40b1d292bff2190a08d7d907c568",
+            "transaction_hash": "e21489fa54c832f95275ef6800be0df71fa43dd2417cf190d3f9a1897428c6df",
+            "state_data": "https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host/data-queue-warehouse-etl-d02ebfb0-4074-436c-9d3f-f9e4e48223fc-2.json"
+        },
+        {
+            "event_type": "Register State",
+            "state_hash": "54dc36f33bbedce87d29a2862436de6084e9fccc6354645949818f94ec48d6d6",
+            "timestamp": 1678443268,
+            "block_nr": 3060325,
+            "client_address": "acd398d9f25c40b1d292bff2190a08d7d907c568",
+            "transaction_hash": "1c2bc34e9ee4d0724130c39dc50de00a18f3d9151f58b944321d27cdc1fefcdc",
+            "state_data": "https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host/data-queue-warehouse-etl-d02ebfb0-4074-436c-9d3f-f9e4e48223fc-15.json"
+        },
+        {
+            "event_type": "Register State",
+            "state_hash": "d4630c072363adfcc080209eb21b4f53eed94bb136a14598b9e8fd6c62a488ff",
+            "timestamp": 1678443278,
+            "block_nr": 3060326,
+            "client_address": "acd398d9f25c40b1d292bff2190a08d7d907c568",
+            "transaction_hash": "65a131ec6e0292147c552e848f70d09783238e5323a10030b7d5dce804f1bcf8",
+            "state_data": "https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host/data-queue-warehouse-etl-d02ebfb0-4074-436c-9d3f-f9e4e48223fc-17.json"
+        },
+        {
+            "event_type": "Register State",
+            "state_hash": "cdec2cb2a3ab16c8802e27d9eb03d9176945b56758e7dea1a14fa3c6024906f3",
+            "timestamp": 1678443299,
+            "block_nr": 3060327,
+            "client_address": "acd398d9f25c40b1d292bff2190a08d7d907c568",
+            "transaction_hash": "5b89790aa2be2d226a3de145125a921abc2495875642540c51c22abe65f5a4b3",
+            "state_data": "https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host/data-queue-warehouse-etl-d02ebfb0-4074-436c-9d3f-f9e4e48223fc-19.json"
+        },
+        {
+            "event_type": "Register State",
+            "state_hash": "d2baee1c5d7454af61c8511ae1ed2ec5c3a1c3d6e013c14a2be97cf758621cb8",
+            "timestamp": 1678443310,
+            "block_nr": 3060328,
+            "client_address": "acd398d9f25c40b1d292bff2190a08d7d907c568",
+            "transaction_hash": "1d89e0c91b8c4a63465951765550a67a6cbe76b1c7d630e88e1c926c650a79a1",
+            "state_data": "https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host/data-queue-warehouse-etl-d02ebfb0-4074-436c-9d3f-f9e4e48223fc-21.json"
+        },
+        {
+            "event_type": "Register State",
+            "state_hash": "084350dbf128e5477cddfe2c2b08f8b1475542b8f24f2b0a743222c6018a2826",
+            "timestamp": 1678443320,
+            "block_nr": 3060329,
+            "client_address": "acd398d9f25c40b1d292bff2190a08d7d907c568",
+            "transaction_hash": "e50f93ef2250912d7744525e1f1b5eef536ff836c5cd150584b8aab6c6e3ca98",
+            "state_data": "https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host/data-queue-warehouse-etl-d02ebfb0-4074-436c-9d3f-f9e4e48223fc-35.json"
+        },
+        {
+            "event_type": "Register State",
+            "state_hash": "c959ce88840609f42a6b47512e8c34899bab7947fc9e15b8482d5529aa318e97",
+            "timestamp": 1678443331,
+            "block_nr": 3060330,
+            "client_address": "acd398d9f25c40b1d292bff2190a08d7d907c568",
+            "transaction_hash": "a78eb682b6c8d4985e2dce32c34aabae1bf34b7b78246222cde7e1e61eb660df",
+            "state_data": "https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host/data-queue-warehouse-etl-d02ebfb0-4074-436c-9d3f-f9e4e48223fc-37.json"
+        },
+        {
+            "event_type": "Register State",
+            "state_hash": "192f9904ea2a961f9cb88784a27390aa1fdea5c0b12e89d17bbffd26c06c6d5e",
+            "timestamp": 1678443342,
+            "block_nr": 3060331,
+            "client_address": "acd398d9f25c40b1d292bff2190a08d7d907c568",
+            "transaction_hash": "ee4fe65d48c1cefc6853c4a47b5666f5822a1f265925a526a978d4885f0c2d6c",
+            "state_data": "https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host/data-queue-warehouse-etl-d02ebfb0-4074-436c-9d3f-f9e4e48223fc-39.json"
+        },
+        {
+            "event_type": "Register State",
+            "state_hash": "6aeafcd9da42a3de40a2ebc46987b1c4890a0843694396704fb56a33c68e354d",
+            "timestamp": 1678443352,
+            "block_nr": 3060332,
+            "client_address": "acd398d9f25c40b1d292bff2190a08d7d907c568",
+            "transaction_hash": "90878ede0db98441e1067146247ecc998b58e8f6a1de912b9d3f33260159d1fe",
+            "state_data": "https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host/data-queue-warehouse-etl-d02ebfb0-4074-436c-9d3f-f9e4e48223fc-41.json"
+        },
+        {
+            "event_type": "Register State",
+            "state_hash": "21b22a3ba31b4edbf26fdda49c7494659a37a8052a5798f673537f1e540b784c",
+            "timestamp": 1678443363,
+            "block_nr": 3060333,
+            "client_address": "acd398d9f25c40b1d292bff2190a08d7d907c568",
+            "transaction_hash": "51049b42463182f012ace922e0727ef293b1c86c2354f8d48a0463363856da89",
+            "state_data": "https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host/data-queue-warehouse-etl-d02ebfb0-4074-436c-9d3f-f9e4e48223fc-55.json"
+        },
+        {
+            "event_type": "Register State",
+            "state_hash": "f09abbd8dedd90de383417cb0edb1c658dea96bd20750e724faa4499f418841f",
+            "timestamp": 1678443373,
+            "block_nr": 3060334,
+            "client_address": "acd398d9f25c40b1d292bff2190a08d7d907c568",
+            "transaction_hash": "1b488e7fd311c946468decc2c124bea94c774c12255bff96250406f4e9f27317",
+            "state_data": "https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host/data-queue-warehouse-etl-d02ebfb0-4074-436c-9d3f-f9e4e48223fc-57.json"
+        },
+        {
+            "event_type": "Register State",
+            "state_hash": "45ee5c0ce528c078ee18e0697df410758197594771b3eb993e0f76c77b96e9ae",
+            "timestamp": 1678443394,
+            "block_nr": 3060335,
+            "client_address": "acd398d9f25c40b1d292bff2190a08d7d907c568",
+            "transaction_hash": "e910d4193094c134348cc6284a56a3811f036ee8d1ce6579acf2ba0565b4b1ae",
+            "state_data": "https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host/data-queue-warehouse-etl-d02ebfb0-4074-436c-9d3f-f9e4e48223fc-59.json"
+        },
+        {
+            "event_type": "Register State",
+            "state_hash": "3407328ab665e45f3640965bfd894bf47433d8e7f70ede1e7730edb99279c460",
+            "timestamp": 1678443405,
+            "block_nr": 3060336,
+            "client_address": "acd398d9f25c40b1d292bff2190a08d7d907c568",
+            "transaction_hash": "2c66b9903828a84b8b4ffcafd4dbbc54f6b8ef9fb679e195e3f5bc5676ce80bf",
+            "state_data": "https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host/data-queue-warehouse-etl-d02ebfb0-4074-436c-9d3f-f9e4e48223fc-61.json"
+        }
+    ]
+}
