@@ -2,6 +2,8 @@
 
 Instance tracking allows distributed parties to monitor executable models, e.g., on AWS Step Functions. The client application operates in two modes. (1) Execution control with model deployment and instantiation as well as triggering and tracking of AWS execution events for Step Function states and their smart contract registration. (2) Instance tracking and analysis allowing for publishing, listening, and subscribing to execution states at the client-side as well as the server-side instance protocol.
 
+Note: The prototype is only intended to demonstrate the feasibility of implementation.
+
 ## Deployment Information
 
 For testing purposes, the application has been deployed under the following addresses.
@@ -31,8 +33,6 @@ Requirements:
 - AWS CLI
 - [unbuffer](https://manpages.ubuntu.com/manpages/jammy/man1/unbuffer.1.html)
 
-Note: The prototype is only intended to demonstrate the feasibility of implementation.
-
 ```
 Usage: engine_event_processing.py <command>
 
@@ -48,3 +48,5 @@ Client account commands:
 --create-account <client-id>         Create new Ethereum account linked to a user-specific <client-id>
 
 ```
+
+Note: The prototype is only intended to demonstrate the feasibility of implementation.
