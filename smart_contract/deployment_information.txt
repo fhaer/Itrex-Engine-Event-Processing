@@ -1,0 +1,11 @@
+Client:
+- Address 0xAcD398d9F25C40b1d292bfF2190A08D7D907c568
+- Transactions: https://sepolia.etherscan.io/address/0xAcD398d9F25C40b1d292bfF2190A08D7D907c568
+- ENS Domain: c-acd398d9f25c40b1d292bff2190a08d7d907c568.eth
+- ENS URI Record: https://c-acd398d9f25c40b1d292bff2190a08d7d907c568.host
+- Certificate Fingerprint (SHA-256): 0x5350213c939a22175a665734f13eaf5bce4e42ecc26f2ac3d836450166558918
+- Certificate Fingerprint Signature (Ethereum ECDSA signature hash): 0x319a8127e02a87f9795b8d813220789b214181a7c4d40baa8bad2d80492e3b63340a407a10c39902a9ca86afcd16227922c5395fd549c43383b7a913db3881e91b (https://etherscan.io/verifySig/16942)
+
+Contract deployment on Ethereum Sepolia: 
+- Address: 0x9817EECcf1F0Bd3d8685396551aD841A5837db5b
+- Transactions: https://sepolia.etherscan.io/address/0x9817EECcf1F0Bd3d8685396551aD841A5837db5b
