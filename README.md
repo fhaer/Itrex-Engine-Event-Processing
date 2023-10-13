@@ -49,4 +49,6 @@ Client account commands:
 
 ```
 
-Note: The prototype is only intended to demonstrate the feasibility of implementation.
+## Related Publication
+
+Härer, Felix (2023): Scalable Model-Based Decentralized Applications in the Cloud Using Certificates and Blockchains (Best Paper Award), in: 2023 IEEE International Conference on Public Key Infrastructure and its Applications (PKIA 2023), September 8-9, 2023, Bangalore, IN. DOI: 10.1109/PKIA58446.2023.10262768. 
